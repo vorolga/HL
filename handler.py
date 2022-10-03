@@ -7,9 +7,7 @@ def handle(conn, document_root):
     rawFile = conn.makefile('r')
     info = rawFile.readline()
     r = HttpReqResp.RequestParser(info)
-    if type(r) == HttpReqResp.HttpResponse:
-        HttpReqResp.response(conn, r)
-        return
+
     request = r.to_request()
 
     if request.error == 1:

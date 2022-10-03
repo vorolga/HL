@@ -51,11 +51,12 @@ class RequestParser(object):
         self.headers = dict()
         while ind < len(req_lines) and len(req_lines[ind]) > 0:
             colon_ind = req_lines[ind].find(':')
+            if colon_ind == -1:
+                break
             header_key = req_lines[ind][:colon_ind]
             header_value = req_lines[ind][colon_ind + 1:]
             self.headers[header_key] = header_value
             ind += 1
-        ind += 1
         self.data = req_lines[ind:] if ind < len(req_lines) else None
 
     def to_request(self):
