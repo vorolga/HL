@@ -57,7 +57,7 @@ class RequestParser(object):
             header_value = req_lines[ind][colon_ind + 1:]
             self.headers[header_key] = header_value
             ind += 1
-        self.data = req_lines[ind:] if ind < len(req_lines) else None
+        self.data = req_lines[ind+1:] if ind < len(req_lines) else None
 
     def to_request(self):
         req = HttpRequest(method=self.method,
